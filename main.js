@@ -1,9 +1,9 @@
 /* global $*/
 
 const timer = document.getElementById('timer');
-const start = document.getElementById('start');
-const stop = document.getElementById('stop');
-const reset = document.getElementById('reset');
+const start = $('#start');
+const stop = $('#stop');
+const reset = $('#reset');
 
 let elapsed = 0;
 let intervalId = null;
@@ -22,16 +22,10 @@ function updateTime() {
   timer.innerHTML = `${formattedH}:${formattedM}:${formattedS}:${formattedMs}`;
 }
 
-start.addEventListener('click', () => {
-  $(function() {
-    let startButton = $('#start').click(function() {
-      $(this).prop('disabled', true);
-    });
-    if (startButton) {
-    $('#stop').prop('disabled', false);
-    $('#reset').prop('disabled', false);
-  }
-  });
+start.click(function() {
+  $(this).prop('disabled', true);
+  stop.prop('disabled', false);
+  reset.prop('disabled', false);
   if (intervalId !== null) {
     return;
   }
@@ -46,48 +40,17 @@ start.addEventListener('click', () => {
   }, 100);
 });
 
-/*start.onclick = function() {
-  $(function() {
-    let startButton = $('#start').click(function() {
-      $(this).prop('disabled', true);
-    });
-    if (startButton) {
-    $('#stop').prop('disabled', false);
-    $('#reset').prop('disabled', false);
-  }
-  });
-};*/
-stop.addEventListener('click', () => {
-  $(function() {
-    let stopButton = $('#stop').click(function() {
-      $(this).prop('disabled', true);
-    });
-    if (stopButton) {
-    $('#start').prop('disabled', false);
-    $('#reset').prop('disabled', false);
-  }
-  });
+stop.click(function() {
+  $(this).prop('disabled', true);
+  start.prop('disabled', false);
+  reset.prop('disabled', false);
   clearInterval(intervalId);
   intervalId = null;
 });
 
-/*stop.onclick = function() { $(function() {
-    let stopButton = $('#stop').click(function() {
-      $(this).prop('disabled', true);
-    });
-    if (stopButton) {
-    $('#start').prop('disabled', false);
-    $('#reset').prop('disabled', false);
-  }
-  });
-};*/  
-  
-reset.addEventListener('click', () => {
+reset.click(function() {
+  $(this).prop('disabled', true);
+  start.prop('disabled', false);
   elapsed = 0;
   updateTime();
-  $(function() {
-    let resetButton = $('#reset').click(function() {
-      $(this).prop('disabled', true);
-    });
   });
-});
