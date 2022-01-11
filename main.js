@@ -9,7 +9,7 @@ let elapsed = 0;
 let intervalId = null;
 
 function updateTime() {
-　const ms = elapsed % 1000;
+  const ms = elapsed % 1000;
   const s = Math.floor(elapsed / 1000) % 60;
   const m = Math.floor(elapsed / 1000 / 60) % 60;
   const h = Math.floor(elapsed / 1000 / 60 / 60);
@@ -50,7 +50,6 @@ stop.click(function() {
 
 reset.click(function() {
   $(this).prop('disabled', true);
-  start.prop('disabled', false);
   elapsed = 0;
   updateTime();
-  });
+});
